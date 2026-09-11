@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Payment Method — QuickEats{% endblock %}
+{% block content %}
+<div class="checkout-step"><span class="done">✓</span><span>Address</span><i></i><span class="done">2</span><span>Payment</span><i></i><span>3</span><span>Confirmation</span></div>
+<div class="checkout-layout">
+<div class="form-card"><p class="eyebrow">Secure checkout</p><h1>Payment Method</h1>
+<form method="post" id="payment-form">
+<label class="payment-option"><input type="radio" name="payment_method" value="UPI" checked><span>📱 <b>UPI</b><small>Google Pay, PhonePe, Paytm and more</small></span></label>
+<label class="payment-option"><input type="radio" name="payment_method" value="Credit / Debit Card"><span>💳 <b>Credit / Debit Card</b><small>Visa, Mastercard, RuPay</small></span></label>
+<label class="payment-option"><input type="radio" name="payment_method" value="Cash on Delivery"><span>💵 <b>Cash on Delivery</b><small>Pay when your order arrives</small></span></label>
+<button class="btn primary full">Place Order</button>
+</form></div>
+<aside class="summary-card"><h2>Amount</h2><div><span>Subtotal</span><b>₹{{ subtotal|round|int }}</b></div><div><span>Delivery</span><b>₹{{ delivery|round|int }}</b></div><hr><div class="total"><span>Total</span><b>₹{{ total|round|int }}</b></div></aside>
+</div>
+{% endblock %}

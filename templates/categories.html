@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Categories — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Browse by taste</p><h1>Food Categories</h1><p>Choose a category to find restaurants serving what you love.</p></div>
+<div class="category-grid big">
+{% for c in categories %}
+<a class="category-card" href="{{ url_for('search', category=c['name']) }}"><span>{{ c['icon'] }}</span><b>{{ c['name'] }}</b><small>{{ c['restaurant_count'] }} restaurants</small></a>
+{% endfor %}
+</div>
+{% endblock %}

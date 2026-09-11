@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Restaurant List — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Restaurants</p><h1>Restaurant List</h1><p>Explore highly rated restaurants available for delivery.</p></div>
+<div class="restaurant-grid">
+{% for r in restaurants %}
+<a class="restaurant-card" href="{{ url_for('restaurant_detail', restaurant_id=r['id']) }}">
+<div class="restaurant-img" style="background-image:url('{{ r['image_url'] }}')"><span class="rating">★ {{ '%.1f'|format(r['rating']) }}</span></div>
+<div class="restaurant-body"><h3>{{ r['name'] }}</h3><p>{{ r['category_name'] }} · {{ r['delivery_time'] }}</p><small>{{ r['description'] }}</small></div>
+</a>
+{% endfor %}
+</div>
+{% endblock %}

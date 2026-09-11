@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}My Orders — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Order history</p><h1>My Orders</h1></div>
+<div class="order-list">
+{% for order in orders %}
+<div class="order-card"><div><span class="order-id">#QE{{ '%05d'|format(order['id']) }}</span><h3>{{ order['status'] }}</h3><p>{{ order['created_at'] }} · {{ order['payment_method'] }}</p></div><div class="order-total"><b>₹{{ order['total']|round|int }}</b><a href="{{ url_for('track_order', order_id=order['id']) }}">Track →</a></div></div>
+{% else %}<div class="empty"><div>▣</div><h2>No orders yet</h2><p>Your completed orders will appear here.</p><a class="btn primary" href="{{ url_for('restaurants') }}">Start Ordering</a></div>{% endfor %}
+</div>
+{% endblock %}

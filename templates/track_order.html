@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Track Order — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Real-time order tracking</p><h1>Track Order #QE{{ '%05d'|format(order['id']) }}</h1><p>{{ order['address'] }}</p></div>
+<div class="track-card">
+<div class="track-map"><div class="map-pin">📍</div><div class="route-line"></div><div class="delivery-pin">🛵</div><div class="map-label">Your delivery is on its way</div></div>
+<div class="timeline">
+<div class="timeline-item done"><span>✓</span><div><b>Order Placed</b><small>Your order was received.</small></div></div>
+<div class="timeline-item done"><span>✓</span><div><b>Restaurant Preparing</b><small>The restaurant is preparing your food.</small></div></div>
+<div class="timeline-item active"><span>🛵</span><div><b>Out for Delivery</b><small>Your delivery partner is on the way.</small></div></div>
+<div class="timeline-item"><span>○</span><div><b>Order Completed</b><small>Enjoy your meal!</small></div></div>
+</div>
+</div>
+{% endblock %}

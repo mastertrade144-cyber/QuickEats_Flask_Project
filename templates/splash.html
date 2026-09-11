@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}QuickEats — Food Delivery{% endblock %}
+{% block content %}
+<section class="splash">
+    <div class="splash-logo">Q</div>
+    <h1>Quick<span>Eats</span></h1>
+    <p>Discover restaurants. Order your favourites. Track delivery.</p>
+    <div class="splash-actions">
+        <a class="btn primary" href="{{ url_for('auth') }}">Login / Sign Up</a>
+        <a class="btn secondary" href="{{ url_for('auth') }}">Explore QuickEats</a>
+    </div>
+    <div class="feature-row">
+        <span>✓ Fresh Food</span><span>✓ Fast Delivery</span><span>✓ Easy Payment</span>
+    </div>
+</section>
+{% endblock %}

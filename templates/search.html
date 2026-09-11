@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Search — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Discover</p><h1>Search Restaurants</h1></div>
+<form class="searchbar large" action="{{ url_for('search') }}">
+  <span>⌕</span><input name="q" value="{{ q }}" placeholder="Search restaurants or cuisine..."><button>Search</button>
+</form>
+<div class="filter-row">
+  <a class="{{ 'active' if not selected_category else '' }}" href="{{ url_for('search', q=q) }}">All</a>
+  {% for c in categories %}<a class="{{ 'active' if selected_category==c['name'] else '' }}" href="{{ url_for('search', q=q, category=c['name']) }}">{{ c['icon'] }} {{ c['name'] }}</a>{% endfor %}
+</div>
+<p class="result-count">{{ restaurants|length }} restaurant(s) found</p>
+<div class="restaurant-grid">
+{% for r in restaurants %}
+<a class="restaurant-card" href="{{ url_for('restaurant_detail', restaurant_id=r['id']) }}">
+  <div class="restaurant-img" style="background-image:url('{{ r['image_url'] }}')"><span class="rating">★ {{ '%.1f'|format(r['rating']) }}</span></div>
+  <div class="restaurant-body"><h3>{{ r['name'] }}</h3><p>{{ r['cuisine'] }} · {{ r['delivery_time'] }}</p></div>
+</a>
+{% else %}<div class="empty"><div>🔎</div><h2>No restaurants found</h2><p>Try another search or category.</p></div>{% endfor %}
+</div>
+{% endblock %}

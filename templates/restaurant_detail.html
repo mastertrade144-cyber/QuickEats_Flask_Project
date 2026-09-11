@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ restaurant['name'] }} — QuickEats{% endblock %}
+{% block content %}
+<div class="detail-cover" style="background-image:url('{{ restaurant['image_url'] }}')"><a class="back" href="{{ url_for('restaurants') }}">← Back</a></div>
+<section class="restaurant-info">
+  <div><p class="eyebrow">{{ restaurant['category_name'] }}</p><h1>{{ restaurant['name'] }}</h1><p>{{ restaurant['description'] }}</p><div class="meta">★ {{ '%.1f'|format(restaurant['rating']) }} · {{ restaurant['cuisine'] }} · {{ restaurant['delivery_time'] }} · Delivery ₹{{ restaurant['delivery_fee'] }}</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Menu / Food List</h2></div>
+<div class="food-grid">
+{% for food in foods %}
+<div class="food-card">
+  <a href="{{ url_for('food_detail', food_id=food['id']) }}"><div class="food-img" style="background-image:url('{{ food['image_url'] }}')"></div></a>
+  <div class="food-body"><div><span class="veg">{{ '● Veg' if food['veg'] else '● Non-Veg' }}</span><h3>{{ food['name'] }}</h3><p>{{ food['description'] }}</p><b>₹{{ '%.0f'|format(food['price']) }}</b></div>
+  <form method="post" action="{{ url_for('add_to_cart', food_id=food['id']) }}"><input type="hidden" name="next" value="{{ request.path }}"><button class="add-btn">+ Add</button></form></div>
+</div>
+{% endfor %}
+</div></section>
+<section class="section review-box">
+<h2>Ratings & Reviews</h2>
+<form method="post" action="{{ url_for('review', restaurant_id=restaurant['id']) }}" class="review-form">
+<select name="rating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select>
+<input name="comment" placeholder="Share your experience..."><button class="btn primary">Review</button>
+</form>
+{% for review in reviews %}<div class="review"><b>{{ review['name'] }}</b> <span>★ {{ review['rating'] }}</span><p>{{ review['comment'] }}</p></div>{% endfor %}
+</section>
+{% endblock %}

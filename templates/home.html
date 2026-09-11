@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Home — QuickEats{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Good food, delivered fast</p>
+    <h1>What are you<br><span>craving today?</span></h1>
+    <p>Discover the best restaurants around you and order in a few taps.</p>
+    <form class="searchbar" action="{{ url_for('search') }}">
+      <span>⌕</span><input name="q" placeholder="Search restaurants, cuisine or food..."><button>Search</button>
+    </form>
+  </div>
+  <div class="hero-art">🍕<span>🍔</span><b>🍛</b></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Categories</h2><a href="{{ url_for('categories') }}">View all →</a></div>
+  <div class="category-grid">
+    {% for c in categories %}
+    <a class="category-card" href="{{ url_for('search', category=c['name']) }}"><span>{{ c['icon'] }}</span><b>{{ c['name'] }}</b></a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Popular near you</h2><a href="{{ url_for('restaurants') }}">View all →</a></div>
+  <div class="restaurant-grid">
+  {% for r in restaurants %}
+    <a class="restaurant-card" href="{{ url_for('restaurant_detail', restaurant_id=r['id']) }}">
+      <div class="restaurant-img" style="background-image:url('{{ r['image_url'] }}')"><span class="rating">★ {{ '%.1f'|format(r['rating']) }}</span></div>
+      <div class="restaurant-body"><h3>{{ r['name'] }}</h3><p>{{ r['cuisine'] }} · {{ r['delivery_time'] }}</p><small>Delivery ₹{{ '%.0f'|format(r['delivery_fee']) }}</small></div>
+    </a>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmation — QuickEats{% endblock %}
+{% block content %}
+<section class="confirmation">
+<div class="success-icon">✓</div><p class="eyebrow">Thank you!</p><h1>Order Confirmed</h1><p>Your order <b>#QE{{ '%05d'|format(order['id']) }}</b> has been placed successfully.</p>
+<div class="confirmation-card"><div><span>Status</span><b>{{ order['status'] }}</b></div><div><span>Payment</span><b>{{ order['payment_method'] }}</b></div><div><span>Total</span><b>₹{{ order['total']|round|int }}</b></div><div><span>Delivery to</span><b>{{ order['address'] }}</b></div></div>
+<div class="button-row"><a class="btn primary" href="{{ url_for('track_order', order_id=order['id']) }}">Track Order</a><a class="btn secondary" href="{{ url_for('home') }}">Continue Shopping</a></div>
+</section>
+{% endblock %}

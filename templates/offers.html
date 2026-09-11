@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Offers — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Save more</p><h1>Today's Offers</h1></div>
+<div class="offer-grid">
+  <div class="offer-banner"><span>WELCOME50</span><h2>50% OFF</h2><p>On your first order. Maximum discount ₹150.</p></div>
+  <div class="offer-banner second"><span>FREE DELIVERY</span><h2>₹0 DELIVERY</h2><p>On selected restaurants today.</p></div>
+</div>
+<section class="section"><div class="section-head"><h2>Restaurants with offers</h2></div>
+<div class="restaurant-grid">
+{% for r in restaurants %}
+<a class="restaurant-card" href="{{ url_for('restaurant_detail', restaurant_id=r['id']) }}">
+<div class="restaurant-img" style="background-image:url('{{ r['image_url'] }}')"><span class="discount">20% OFF</span></div>
+<div class="restaurant-body"><h3>{{ r['name'] }}</h3><p>{{ r['cuisine'] }} · {{ r['delivery_time'] }}</p></div>
+</a>
+{% endfor %}
+</div></section>
+{% endblock %}

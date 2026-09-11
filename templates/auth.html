@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login / Sign Up — QuickEats{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-head">
+      <div class="splash-logo small">Q</div>
+      <h1>Welcome to QuickEats</h1>
+      <p>Login or create your account to order food.</p>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-target="login-panel">Login</button>
+      <button class="tab" data-target="signup-panel">Sign Up</button>
+    </div>
+    <form id="login-panel" class="auth-panel active" method="post">
+      <input type="hidden" name="action" value="login">
+      <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+      <label>Password<input type="password" name="password" required placeholder="••••••••"></label>
+      <button class="btn primary full">Login</button>
+    </form>
+    <form id="signup-panel" class="auth-panel" method="post">
+      <input type="hidden" name="action" value="signup">
+      <label>Full name<input type="text" name="name" required placeholder="Your name"></label>
+      <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+      <label>Password<input type="password" name="password" minlength="6" required placeholder="Minimum 6 characters"></label>
+      <button class="btn primary full">Create Account</button>
+    </form>
+    <div class="demo-note"><b>Demo:</b> demo@quickeats.local / demo123</div>
+  </div>
+</section>
+{% endblock %}

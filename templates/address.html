@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Address / Location — QuickEats{% endblock %}
+{% block content %}
+<div class="checkout-step"><span class="done">1</span><span>Address</span><i></i><span>2</span><span>Payment</span><i></i><span>3</span><span>Confirmation</span></div>
+<div class="form-card"><p class="eyebrow">Delivery</p><h1>Address / Location</h1><p>Where should we deliver your order?</p>
+<form method="post">
+<label>Delivery address<textarea name="address" required placeholder="House / Street / Area / City / State">{{ user['address'] }}</textarea></label>
+<button class="btn primary">Continue to Payment →</button>
+</form></div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}QuickEats{% endblock %}</title>
+    <meta name="description" content="QuickEats food delivery application">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="{{ url_for('home') if current_user else url_for('splash') }}">
+        <span class="brand-mark">Q</span>
+        <span>QuickEats</span>
+    </a>
+    {% if current_user %}
+    <nav class="desktop-nav">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('categories') }}">Categories</a>
+        <a href="{{ url_for('offers') }}">Offers</a>
+        <a href="{{ url_for('orders') }}">My Orders</a>
+    </nav>
+    <div class="top-actions">
+        <a class="icon-btn" href="{{ url_for('search') }}">⌕</a>
+        <a class="cart-btn" href="{{ url_for('cart') }}">🛒 <span>{{ cart_count }}</span></a>
+        <a class="avatar" href="{{ url_for('profile') }}">{{ current_user['name'][0]|upper }}</a>
+    </div>
+    {% endif %}
+</header>
+
+<main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+
+{% if current_user %}
+<footer class="mobile-nav">
+    <a href="{{ url_for('home') }}">⌂<small>Home</small></a>
+    <a href="{{ url_for('search') }}">⌕<small>Search</small></a>
+    <a href="{{ url_for('cart') }}">🛒<small>Cart</small></a>
+    <a href="{{ url_for('orders') }}">▣<small>Orders</small></a>
+    <a href="{{ url_for('profile') }}">●<small>Profile</small></a>
+</footer>
+{% endif %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

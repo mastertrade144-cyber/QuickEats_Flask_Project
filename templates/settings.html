@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Settings — QuickEats{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">Preferences</p><h1>Settings</h1></div>
+<div class="settings-card">
+<label class="setting"><span>🔔 <b>Push Notifications</b><small>Order updates and offers</small></span><input type="checkbox" checked></label>
+<label class="setting"><span>📍 <b>Location Services</b><small>Improve restaurant discovery</small></span><input type="checkbox" checked></label>
+<label class="setting"><span>🌙 <b>Dark Mode</b><small>Use a darker interface</small></span><input type="checkbox" id="dark-toggle"></label>
+</div>
+<div class="settings-links"><a href="{{ url_for('help_center') }}">❓ Help & Support</a><a href="{{ url_for('orders') }}">▣ Order History</a><a href="{{ url_for('profile') }}">● Account & Profile</a></div>
+{% endblock %}

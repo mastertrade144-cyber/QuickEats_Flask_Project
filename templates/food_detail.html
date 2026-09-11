@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ food['name'] }} — QuickEats{% endblock %}
+{% block content %}
+<div class="food-detail">
+  <div class="food-detail-img" style="background-image:url('{{ food['image_url'] }}')"></div>
+  <div class="food-detail-info">
+    <p class="eyebrow">{{ food['restaurant_name'] }} · ★ {{ food['rating'] }}</p>
+    <h1>{{ food['name'] }}</h1>
+    <p>{{ food['description'] }}</p>
+    <div class="price-xl">₹{{ '%.0f'|format(food['price']) }}</div>
+    <form method="post" action="{{ url_for('add_to_cart', food_id=food['id']) }}" class="buy-row">
+      <input type="number" name="quantity" min="1" max="20" value="1"><button class="btn primary">Add to Cart</button>
+    </form>
+    <a href="{{ url_for('restaurant_detail', restaurant_id=food['restaurant_id']) }}" class="text-link">← Back to menu</a>
+  </div>
+</div>
+{% endblock %}
